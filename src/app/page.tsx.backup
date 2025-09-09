@@ -1,0 +1,2180 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  ArrowRight,
+  Phone,
+  Mail,
+  Clock,
+  AlertTriangle,
+  TrendingDown,
+  Zap,
+  Shield,
+  TrendingUp,
+  Lock,
+  Users,
+  CheckCircle,
+  Puzzle,
+  DollarSign,
+  BarChart3,
+  Workflow,
+  FileText,
+  Database,
+  PenTool,
+  MapPin,
+  Star,
+  Award,
+  Target,
+  Menu,
+  X,
+  Send,
+  Loader2,
+  CheckCircle2
+} from "lucide-react";
+
+// Form validation schema
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().regex(/^[\+]?[(]?[\d\s\-\(\)]{10,}$/, "Please enter a valid phone number").optional().or(z.literal("")),
+  company: z.string().min(2, "Company name must be at least 2 characters").max(100, "Company name must be less than 100 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters")
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
+export default function Page() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+    watch
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    mode: "onChange"
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      console.log('Form submitted:', data);
+      setShowSuccessModal(true);
+      reset();
+    } catch (error) {
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
+      {/* Navigation Header */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <span className="text-2xl font-bold text-primary-900">ieIMPACT</span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#services" className="text-gray-700 hover:text-primary-600 transition-colors">Services</a>
+              <a href="#benefits" className="text-gray-700 hover:text-primary-600 transition-colors">Benefits</a>
+              <a href="#how-it-works" className="text-gray-700 hover:text-primary-600 transition-colors">How It Works</a>
+              <a href="#contact" className="text-gray-700 hover:text-primary-600 transition-colors">Contact</a>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300"
+              >
+                Get Started
+              </motion.button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-700 hover:text-primary-600 transition-colors"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="md:hidden py-4 border-t border-gray-200"
+            >
+              <div className="flex flex-col space-y-4">
+                <a href="#services" className="text-gray-700 hover:text-primary-600 transition-colors">Services</a>
+                <a href="#benefits" className="text-gray-700 hover:text-primary-600 transition-colors">Benefits</a>
+                <a href="#how-it-works" className="text-gray-700 hover:text-primary-600 transition-colors">How It Works</a>
+                <a href="#contact" className="text-gray-700 hover:text-primary-600 transition-colors">Contact</a>
+                <button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 w-full">
+                  Get Started
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </nav>
+
+      <div className="pt-16">
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden" data-oid="5bbflox">
+        <div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32"
+          data-oid="3yiyq45">
+
+          <div
+            className="grid lg:grid-cols-2 gap-12 items-center"
+            data-oid="3i_rm:k">
+
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-8"
+              data-oid="v3pvdkv">
+
+              <div className="space-y-6" data-oid="cmsrqh0">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-900 leading-tight"
+                  data-oid="cdzm5a2">
+
+                  Focus on Appraising.{" "}
+                  <span className="text-primary-600" data-oid="f3ge_e3">
+                    We'll Handle the Data Entry.
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-xl lg:text-2xl text-gray-600 leading-relaxed"
+                  data-oid="l_vu390">
+
+                  24/7 professional data entry services for real estate
+                  appraisers. Boost productivity, reduce costs, and deliver
+                  faster results.
+                </motion.p>
+              </div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4"
+                data-oid="xeajgq.">
+
+                <motion.button
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                  data-oid="5kwwwz9">
+
+                  Get Started Today
+                  <ArrowRight
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                    data-oid="amw0cve" />
+
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.05, borderColor: "#3b82f6" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-primary-300 hover:border-primary-600 text-primary-700 hover:text-primary-800 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 bg-white hover:bg-primary-50"
+                  data-oid="b:pqeo_">
+
+                  Request Quote
+                </motion.button>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex flex-wrap items-center gap-6 pt-8 border-t border-gray-200"
+                data-oid="tj8:jyw">
+
+                <div
+                  className="flex items-center gap-2 text-gray-600"
+                  data-oid="8vuy3au">
+
+                  <div
+                    className="w-3 h-3 bg-success-500 rounded-full animate-pulse"
+                    data-oid="v8br.a2">
+                  </div>
+                  <span className="font-medium" data-oid="pb55ko5">
+                    24/7 Available
+                  </span>
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-600"
+                  data-oid="_w3b7z3">
+
+                  <div
+                    className="w-3 h-3 bg-warning-500 rounded-full"
+                    data-oid="b02yb-:">
+                  </div>
+                  <span className="font-medium" data-oid=".rpcxa:">
+                    99.9% Accuracy
+                  </span>
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-600"
+                  data-oid="54snk79">
+
+                  <div
+                    className="w-3 h-3 bg-primary-500 rounded-full"
+                    data-oid="-02pe6u">
+                  </div>
+                  <span className="font-medium" data-oid="jy.f7ms">
+                    Trusted by 500+ Appraisers
+                  </span>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+              data-oid="t:gbcwa">
+
+              <div className="relative z-10" data-oid="3hn5q7p">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100"
+                  data-oid=".1wp93d">
+
+                  {/* Mock Appraisal Interface */}
+                  <div className="space-y-6" data-oid="hfk0hob">
+                    <div
+                      className="flex items-center justify-between"
+                      data-oid="ibz6c97">
+
+                      <h3
+                        className="text-lg font-semibold text-primary-900"
+                        data-oid="l_mmpah">
+
+                        Appraisal Report #AR-2024-001
+                      </h3>
+                      <div
+                        className="px-3 py-1 bg-success-100 text-success-700 rounded-full text-sm font-medium"
+                        data-oid="xayhh59">
+
+                        Processing
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4" data-oid="u7ymdmz">
+                      <div className="space-y-2" data-oid="lem5v2z">
+                        <label
+                          className="text-sm font-medium text-gray-700"
+                          data-oid="td0lj.r">
+
+                          Property Address
+                        </label>
+                        <div
+                          className="h-3 bg-gray-200 rounded animate-pulse"
+                          data-oid="38tphag">
+                        </div>
+                      </div>
+                      <div className="space-y-2" data-oid="-fgu0-a">
+                        <label
+                          className="text-sm font-medium text-gray-700"
+                          data-oid="49f16d3">
+
+                          Square Footage
+                        </label>
+                        <div
+                          className="h-3 bg-gray-200 rounded animate-pulse"
+                          data-oid="-u-o1o6">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2" data-oid="tng:rj4">
+                      <label
+                        className="text-sm font-medium text-gray-700"
+                        data-oid="yc-jz3_">
+
+                        Comparable Properties
+                      </label>
+                      <div className="space-y-2" data-oid="akmrvtf">
+                        <div
+                          className="h-3 bg-primary-200 rounded"
+                          data-oid="q2h:-de">
+                        </div>
+                        <div
+                          className="h-3 bg-primary-200 rounded w-4/5"
+                          data-oid="epdg9ag">
+                        </div>
+                        <div
+                          className="h-3 bg-primary-200 rounded w-3/5"
+                          data-oid="mod94qp">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="flex items-center gap-2 pt-4"
+                      data-oid="t4:35e1">
+
+                      <div
+                        className="w-2 h-2 bg-success-500 rounded-full animate-pulse"
+                        data-oid="we04z6e">
+                      </div>
+                      <span
+                        className="text-sm text-success-700 font-medium"
+                        data-oid="g0h8s:y">
+
+                        Data entry in progress...
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Background Decorative Elements */}
+              <div
+                className="absolute -top-4 -right-4 w-24 h-24 bg-warning-200 rounded-full opacity-20 animate-bounce-gentle"
+                data-oid="6n2q2xd">
+              </div>
+              <div
+                className="absolute -bottom-8 -left-8 w-32 h-32 bg-success-200 rounded-full opacity-20 animate-bounce-gentle"
+                style={{ animationDelay: "1s" }}
+                data-oid="w3rj4e4">
+              </div>
+              <div
+                className="absolute top-1/2 -right-8 w-16 h-16 bg-primary-200 rounded-full opacity-30 animate-bounce-gentle"
+                style={{ animationDelay: "2s" }}
+                data-oid=":p_b72l">
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Background Pattern */}
+        <div className="absolute inset-0 -z-10" data-oid="p25s.ha">
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-primary-50 via-transparent to-primary-100 opacity-50"
+            data-oid="321yn25">
+          </div>
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-200 rounded-full blur-3xl opacity-20"
+            data-oid="0-71v5x">
+          </div>
+        </div>
+      </section>
+
+      {/* Problem/Solution Section */}
+      <section
+        className="py-20 lg:py-32 relative overflow-hidden"
+        data-oid="u4wx45k">
+
+        <div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          data-oid="bjfgnq4">
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+            data-oid="79yq962">
+
+            <h2
+              className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4"
+              data-oid="6k0ua83">
+
+              Stop Losing Time on Data Entry
+            </h2>
+            <p
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              data-oid="9yy78h8">
+
+              Every hour spent on data entry is an hour not spent growing your
+              appraisal business
+            </p>
+          </motion.div>
+
+          <div
+            className="grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl"
+            data-oid="m2phc.v">
+
+            {/* Problem Side - Darker */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 lg:p-12 text-white relative"
+              data-oid="d3-y1my">
+
+              <div className="relative z-10" data-oid="_in2dbk">
+                <div
+                  className="flex items-center gap-3 mb-8"
+                  data-oid="3omdpwl">
+
+                  <div
+                    className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center"
+                    data-oid="m9_5gl0">
+
+                    <motion.div
+                      animate={{ rotate: [0, -10, 10, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      data-oid="_0me3to">
+
+                      ⚠️
+                    </motion.div>
+                  </div>
+                  <h3
+                    className="text-2xl lg:text-3xl font-bold"
+                    data-oid="8io2:h7">
+
+                    The Problem
+                  </h3>
+                </div>
+
+                <div className="space-y-6" data-oid="4a08sr0">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="d9puh7_">
+
+                    <div
+                      className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="a0k0:ic">
+
+                      <Clock
+                        className="w-4 h-4 text-red-400"
+                        data-oid="ro2ah.f" />
+
+                    </div>
+                    <div data-oid="9wbjs7s">
+                      <h4
+                        className="font-semibold text-lg mb-2"
+                        data-oid="n6s53zo">
+
+                        Time-Consuming Process
+                      </h4>
+                      <p className="text-gray-300" data-oid="a48xyr:">
+                        Spending 3-5 hours per report on tedious data entry
+                        instead of focusing on appraisal analysis
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="6ybrsrg">
+
+                    <div
+                      className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="m7p_dp9">
+
+                      <AlertTriangle
+                        className="w-4 h-4 text-red-400"
+                        data-oid="3emf_ch" />
+
+                    </div>
+                    <div data-oid="we4lrb7">
+                      <h4
+                        className="font-semibold text-lg mb-2"
+                        data-oid="xoowud2">
+
+                        Error-Prone Manual Entry
+                      </h4>
+                      <p className="text-gray-300" data-oid="7awdpxl">
+                        Human errors in data input leading to report revisions
+                        and client dissatisfaction
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="t.d.sba">
+
+                    <div
+                      className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="xn9kbgv">
+
+                      <TrendingDown
+                        className="w-4 h-4 text-red-400"
+                        data-oid="y5k0oaf" />
+
+                    </div>
+                    <div data-oid=".1so_by">
+                      <h4
+                        className="font-semibold text-lg mb-2"
+                        data-oid=":c2j:hp">
+
+                        Limited Growth Potential
+                      </h4>
+                      <p className="text-gray-300" data-oid=":ms1uzp">
+                        Unable to take on more clients due to administrative
+                        bottlenecks
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Problem Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  viewport={{ once: true }}
+                  className="mt-8 p-6 bg-gray-700/50 rounded-lg border border-gray-600"
+                  data-oid="a2wybl9">
+
+                  <div className="text-center" data-oid="ch39.i5">
+                    <div
+                      className="text-3xl font-bold text-red-400 mb-2"
+                      data-oid="rlrz4fg">
+
+                      3-5 Hours
+                    </div>
+                    <div className="text-gray-300" data-oid="wrhatwr">
+                      Wasted per report on data entry
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Background decoration */}
+              <div
+                className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full -translate-y-16 translate-x-16"
+                data-oid="ghpfosl">
+              </div>
+              <div
+                className="absolute bottom-0 left-0 w-24 h-24 bg-red-500/10 rounded-full translate-y-12 -translate-x-12"
+                data-oid="xf.nt..">
+              </div>
+            </motion.div>
+
+            {/* Solution Side - Brighter */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-success-50 to-primary-50 p-8 lg:p-12 relative"
+              data-oid="vn0._0l">
+
+              <div className="relative z-10" data-oid="_hy2n7f">
+                <div
+                  className="flex items-center gap-3 mb-8"
+                  data-oid=":eyc0bv">
+
+                  <div
+                    className="w-12 h-12 bg-success-500 rounded-lg flex items-center justify-center"
+                    data-oid="2tatxea">
+
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      data-oid="lztfb8_">
+
+                      ✨
+                    </motion.div>
+                  </div>
+                  <h3
+                    className="text-2xl lg:text-3xl font-bold text-primary-900"
+                    data-oid="y.5m38h">
+
+                    The Solution
+                  </h3>
+                </div>
+
+                <div className="space-y-6" data-oid="i-78fa9">
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="g38e.zt">
+
+                    <div
+                      className="w-8 h-8 bg-success-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="-vmdqbu">
+
+                      <Zap
+                        className="w-4 h-4 text-success-600"
+                        data-oid="o36r-57" />
+
+                    </div>
+                    <div data-oid="iwobvnv">
+                      <h4
+                        className="font-semibold text-lg mb-2 text-primary-900"
+                        data-oid="7safv.k">
+
+                        Lightning-Fast Processing
+                      </h4>
+                      <p className="text-gray-700" data-oid="rl-m28x">
+                        Professional data entry experts complete your reports in
+                        minutes, not hours
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="t:nxfyt">
+
+                    <div
+                      className="w-8 h-8 bg-success-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="zxfp54n">
+
+                      <Shield
+                        className="w-4 h-4 text-success-600"
+                        data-oid="pm4nxt9" />
+
+                    </div>
+                    <div data-oid="ik73-e.">
+                      <h4
+                        className="font-semibold text-lg mb-2 text-primary-900"
+                        data-oid="e3wr_28">
+
+                        99.9% Accuracy Guarantee
+                      </h4>
+                      <p className="text-gray-700" data-oid="kto5zsj">
+                        Rigorous quality control processes ensure error-free
+                        data entry every time
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 1.0 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                    data-oid="vxsn-6n">
+
+                    <div
+                      className="w-8 h-8 bg-success-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"
+                      data-oid="intxihh">
+
+                      <TrendingUp
+                        className="w-4 h-4 text-success-600"
+                        data-oid="jsz.3p0" />
+
+                    </div>
+                    <div data-oid="5znw0mt">
+                      <h4
+                        className="font-semibold text-lg mb-2 text-primary-900"
+                        data-oid="sz_f483">
+
+                        Scale Your Business
+                      </h4>
+                      <p className="text-gray-700" data-oid=":1444ea">
+                        Take on more clients without hiring additional staff or
+                        working longer hours
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Solution Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  viewport={{ once: true }}
+                  className="mt-8 grid grid-cols-2 gap-4"
+                  data-oid="47vnnto">
+
+                  <div
+                    className="p-4 bg-white rounded-lg shadow-md border border-success-200"
+                    data-oid="mqz.w:i">
+
+                    <div className="text-center" data-oid="n.8615o">
+                      <div
+                        className="text-2xl font-bold text-success-600 mb-1"
+                        data-oid="-5xnjmo">
+
+                        75%
+                      </div>
+                      <div className="text-sm text-gray-600" data-oid="h-_me15">
+                        Time Savings
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="p-4 bg-white rounded-lg shadow-md border border-primary-200"
+                    data-oid="xcra2zy">
+
+                    <div className="text-center" data-oid="gyjtkzf">
+                      <div
+                        className="text-2xl font-bold text-primary-600 mb-1"
+                        data-oid="-k33_a:">
+
+                        3-5 Hours
+                      </div>
+                      <div className="text-sm text-gray-600" data-oid="d3f50k7">
+                        Faster Reports
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* CTA in Solution */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                  viewport={{ once: true }}
+                  className="mt-8"
+                  data-oid="pyomt6i">
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-success-600 hover:bg-success-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                    data-oid="9-hpe3c">
+
+                    Start Saving Time Today
+                    <ArrowRight className="w-4 h-4" data-oid="c2imq3e" />
+                  </motion.button>
+                </motion.div>
+              </div>
+
+              {/* Background decoration */}
+              <div
+                className="absolute top-0 left-0 w-32 h-32 bg-success-200/30 rounded-full -translate-y-16 -translate-x-16"
+                data-oid="_gowst7">
+              </div>
+              <div
+                className="absolute bottom-0 right-0 w-24 h-24 bg-primary-200/30 rounded-full translate-y-12 translate-x-12"
+                data-oid="r2c26zj">
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Section Background */}
+        <div
+          className="absolute inset-0 -z-10 bg-gray-50"
+          data-oid="zdsfajx">
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4">
+              Comprehensive Data Entry Services
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We handle all types of appraisal data with precision and speed
+            </p>
+          </motion.div>
+
+          {/* Data Types */}
+          <div className="mb-16">
+            <motion.h3
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-2xl font-bold text-primary-900 text-center mb-8"
+            >
+              Data Types We Handle
+            </motion.h3>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { icon: FileText, title: "Inspection Sheets", description: "Complete property inspection data entry with detailed accuracy" },
+                { icon: Database, title: "Subject Information", description: "Property details, measurements, and characteristics" },
+                { icon: BarChart3, title: "Comparable Properties", description: "Comp analysis data and market research information" },
+                { icon: MapPin, title: "Property Listings", description: "MLS data, property descriptions, and listing details" },
+                { icon: PenTool, title: "Sketches & Diagrams", description: "Floor plans, property sketches, and technical drawings" },
+                { icon: Target, title: "Custom Reports", description: "Specialized data entry for unique appraisal requirements" }
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-gradient-to-br from-primary-50 to-white rounded-xl p-6 border border-primary-100 hover:border-primary-200 transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colors duration-300">
+                    <service.icon className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-primary-900 mb-2">{service.title}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Software Compatibility */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 lg:p-12 text-white"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                Compatible with All Major Software
+              </h3>
+              <p className="text-xl text-primary-100">
+                Seamless integration with your existing appraisal workflow
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+              {[
+                "a la mode", "WinTOTAL", "Aurora", "TOTAL 2013", 
+                "ACI Reports", "SFREP", "AppraiseIT", "ClickFORMS"
+              ].map((software, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+                >
+                  <span className="text-sm font-medium">{software}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 lg:py-32 relative" data-oid="0ipsal6">
+        <div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          data-oid="nrl.yql">
+
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+            data-oid="3as0srq">
+
+            <h2
+              className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4"
+              data-oid="a.tom-f">
+
+              Why Choose ieIMPACT?
+            </h2>
+            <p
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              data-oid="ndtjdyh">
+
+              Professional data entry services designed specifically for real
+              estate appraisers
+            </p>
+          </motion.div>
+
+          {/* Central Workflow Illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-16 flex justify-center"
+            data-oid="tf.rqfn">
+
+            <div className="relative" data-oid="e68er9j">
+              <div
+                className="bg-white rounded-2xl shadow-xl p-8 border border-primary-100 max-w-2xl"
+                data-oid="436lg1n">
+
+                <div
+                  className="flex items-center justify-between"
+                  data-oid="l.0j8i6">
+
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="flex flex-col items-center gap-2"
+                    data-oid="p85ti9.">
+
+                    <div
+                      className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center"
+                      data-oid="9npbfui">
+
+                      <Workflow
+                        className="w-8 h-8 text-primary-600"
+                        data-oid="tam76pr" />
+
+                    </div>
+                    <span
+                      className="text-sm font-medium text-primary-700"
+                      data-oid="k5ix619">
+
+                      Submit Data
+                    </span>
+                  </motion.div>
+
+                  <div className="flex-1 mx-4" data-oid="5dwa8h.">
+                    <motion.div
+                      animate={{ x: [0, 10, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="h-1 bg-gradient-to-r from-primary-300 to-success-300 rounded-full"
+                      data-oid="15l6ypr">
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                    className="flex flex-col items-center gap-2"
+                    data-oid="6pc5e3h">
+
+                    <div
+                      className="w-16 h-16 bg-warning-100 rounded-full flex items-center justify-center"
+                      data-oid="aelbu7c">
+
+                      <Users
+                        className="w-8 h-8 text-warning-600"
+                        data-oid="q5_p.sf" />
+
+                    </div>
+                    <span
+                      className="text-sm font-medium text-warning-700"
+                      data-oid="u4_snjk">
+
+                      We Process
+                    </span>
+                  </motion.div>
+
+                  <div className="flex-1 mx-4" data-oid="b:aqxp6">
+                    <motion.div
+                      animate={{ x: [0, 10, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1
+                      }}
+                      className="h-1 bg-gradient-to-r from-warning-300 to-success-300 rounded-full"
+                      data-oid="y.5x03n">
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                    className="flex flex-col items-center gap-2"
+                    data-oid="8w:hgoz">
+
+                    <div
+                      className="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center"
+                      data-oid="h4sv42v">
+
+                      <CheckCircle
+                        className="w-8 h-8 text-success-600"
+                        data-oid="z.b.4fl" />
+
+                    </div>
+                    <span
+                      className="text-sm font-medium text-success-700"
+                      data-oid="y3ev9vo">
+
+                      Deliver Results
+                    </span>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            data-oid="zumru_c">
+
+            {/* Feature 1: 24/7 Availability */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="ellqi6d">
+
+              <div
+                className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colors duration-300"
+                data-oid="ma9xxgo">
+
+                <Clock
+                  className="w-6 h-6 text-primary-600"
+                  data-oid="6jy9o8a" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="7-.sgq2">
+
+                24/7 Availability
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="5wz.9b3">
+
+                Round-the-clock service ensures your reports are processed
+                whenever you need them, even on weekends and holidays.
+              </p>
+            </motion.div>
+
+            {/* Feature 2: Secure Data Handling */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="1k7n6zp">
+
+              <div
+                className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-success-200 transition-colors duration-300"
+                data-oid="9dy8uik">
+
+                <Lock className="w-6 h-6 text-success-600" data-oid="isx8n2m" />
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="6bh-o1d">
+
+                Secure Data Handling
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="y7z4gmb">
+
+                Bank-level encryption and strict confidentiality protocols
+                protect your sensitive appraisal data at all times.
+              </p>
+            </motion.div>
+
+            {/* Feature 3: Quick Turnaround */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="7ssrqz:">
+
+              <div
+                className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-warning-200 transition-colors duration-300"
+                data-oid="887hxrf">
+
+                <Zap className="w-6 h-6 text-warning-600" data-oid=".xu0353" />
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="vdxp8sx">
+
+                Quick Turnaround
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="mfg_qnt">
+
+                Most data entry tasks completed within 2-4 hours, helping you
+                meet tight deadlines and client expectations.
+              </p>
+            </motion.div>
+
+            {/* Feature 4: Experienced Professionals */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="50rqws_">
+
+              <div
+                className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colors duration-300"
+                data-oid="xv0be70">
+
+                <Users
+                  className="w-6 h-6 text-primary-600"
+                  data-oid="bygyh4_" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="96rzgx0">
+
+                Expert Team
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="0ajvu88">
+
+                Trained professionals with years of real estate appraisal
+                experience understand your specific requirements.
+              </p>
+            </motion.div>
+
+            {/* Feature 5: Quality Assurance */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid=":td78wf">
+
+              <div
+                className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-success-200 transition-colors duration-300"
+                data-oid="nvtg.-f">
+
+                <CheckCircle
+                  className="w-6 h-6 text-success-600"
+                  data-oid="15h26ka" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="iglxwzz">
+
+                Quality Assurance
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="ddflkii">
+
+                Multi-layer review process with 99.9% accuracy guarantee ensures
+                error-free data entry every time.
+              </p>
+            </motion.div>
+
+            {/* Feature 6: Seamless Integration */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="gc2wi:l">
+
+              <div
+                className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-warning-200 transition-colors duration-300"
+                data-oid="as:ihzk">
+
+                <Puzzle
+                  className="w-6 h-6 text-warning-600"
+                  data-oid="n8tkfgu" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="9-ps.lz">
+
+                Seamless Integration
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="ze0xm5-">
+
+                Compatible with all major appraisal software including a la
+                mode, WinTOTAL, Aurora, and more.
+              </p>
+            </motion.div>
+
+            {/* Feature 7: Cost Savings */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="dh37r7e">
+
+              <div
+                className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-success-200 transition-colors duration-300"
+                data-oid="0:b-hve">
+
+                <DollarSign
+                  className="w-6 h-6 text-success-600"
+                  data-oid="gt2hbqo" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="nk1yxb_">
+
+                Cost Savings
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="82.ua3e">
+
+                Reduce operational costs by up to 60% compared to hiring
+                full-time data entry staff.
+              </p>
+            </motion.div>
+
+            {/* Feature 8: Scalability */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+              data-oid="j9donze">
+
+              <div
+                className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colors duration-300"
+                data-oid="a22pedf">
+
+                <BarChart3
+                  className="w-6 h-6 text-primary-600"
+                  data-oid="ot7wpby" />
+
+              </div>
+              <h3
+                className="text-lg font-semibold text-primary-900 mb-2"
+                data-oid="s2:c0td">
+
+                Unlimited Scalability
+              </h3>
+              <p
+                className="text-gray-600 text-sm leading-relaxed"
+                data-oid="3g-ppvj">
+
+                Handle any volume of reports without capacity constraints. Scale
+                up or down based on your business needs.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+            data-oid="u87rvm8">
+
+            <div
+              className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 lg:p-12 text-white relative overflow-hidden"
+              data-oid="edb0sfc">
+
+              <div className="relative z-10" data-oid="cmulyqf">
+                <h3
+                  className="text-2xl lg:text-3xl font-bold mb-4"
+                  data-oid="h5q3mcs">
+
+                  Ready to Transform Your Workflow?
+                </h3>
+                <p
+                  className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto"
+                  data-oid="777m-aw">
+
+                  Join hundreds of appraisers who have already streamlined their
+                  data entry process
+                </p>
+
+                <div
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                  data-oid="hmyj992">
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white text-primary-700 hover:text-primary-800 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                    data-oid="i77f35:">
+
+                    Get Started Now
+                    <ArrowRight className="w-5 h-5" data-oid="oiwii5n" />
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/10"
+                    data-oid="h:5p45p">
+
+                    Schedule Demo
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Background decorations */}
+              <div
+                className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"
+                data-oid="qxd1xw0">
+              </div>
+              <div
+                className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"
+                data-oid="dbxg09k">
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Section Background */}
+        <div
+          className="absolute inset-0 -z-10 bg-white"
+          data-oid="ts3liwz">
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="benefits" className="py-20 lg:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4">
+              Benefits That Drive Results
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover how ieIMPACT transforms your appraisal business operations
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Clock,
+                title: "24/7 Availability",
+                description: "Never miss a deadline with round-the-clock service availability",
+                bgColor: "from-primary-50",
+                iconBg: "bg-primary-100",
+                iconColor: "text-primary-600",
+                statBg: "bg-primary-100",
+                statColor: "text-primary-600",
+                statLabelColor: "text-primary-700",
+                stat: "24/7",
+                statLabel: "Service"
+              },
+              {
+                icon: Shield,
+                title: "Accuracy & Quality",
+                description: "Rigorous quality control ensures 99.9% accuracy on every report",
+                bgColor: "from-success-50",
+                iconBg: "bg-success-100",
+                iconColor: "text-success-600",
+                statBg: "bg-success-100",
+                statColor: "text-success-600",
+                statLabelColor: "text-success-700",
+                stat: "99.9%",
+                statLabel: "Accuracy"
+              },
+              {
+                icon: DollarSign,
+                title: "Cost Reduction",
+                description: "Save up to 60% compared to hiring full-time data entry staff",
+                bgColor: "from-warning-50",
+                iconBg: "bg-warning-100",
+                iconColor: "text-warning-600",
+                statBg: "bg-warning-100",
+                statColor: "text-warning-600",
+                statLabelColor: "text-warning-700",
+                stat: "60%",
+                statLabel: "Savings"
+              },
+              {
+                icon: Zap,
+                title: "Faster Turnaround",
+                description: "Complete reports 75% faster with professional data entry",
+                bgColor: "from-primary-50",
+                iconBg: "bg-primary-100",
+                iconColor: "text-primary-600",
+                statBg: "bg-primary-100",
+                statColor: "text-primary-600",
+                statLabelColor: "text-primary-700",
+                stat: "75%",
+                statLabel: "Faster"
+              },
+              {
+                icon: BarChart3,
+                title: "Scalability",
+                description: "Handle unlimited volume without capacity constraints",
+                bgColor: "from-success-50",
+                iconBg: "bg-success-100",
+                iconColor: "text-success-600",
+                statBg: "bg-success-100",
+                statColor: "text-success-600",
+                statLabelColor: "text-success-700",
+                stat: "∞",
+                statLabel: "Capacity"
+              },
+              {
+                icon: Award,
+                title: "Professional Excellence",
+                description: "Trained experts with years of appraisal industry experience",
+                bgColor: "from-warning-50",
+                iconBg: "bg-warning-100",
+                iconColor: "text-warning-600",
+                statBg: "bg-warning-100",
+                statColor: "text-warning-600",
+                statLabelColor: "text-warning-700",
+                stat: "10+",
+                statLabel: "Years"
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.03 }}
+                className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
+              >
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${benefit.bgColor} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                
+                <div className="relative z-10">
+                  <div className={`w-16 h-16 ${benefit.iconBg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300`}>
+                    <benefit.icon className={`w-8 h-8 ${benefit.iconColor}`} />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-primary-900 mb-3">{benefit.title}</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">{benefit.description}</p>
+                  
+                  {/* Stat */}
+                  <div className={`inline-flex items-center gap-2 px-4 py-2 ${benefit.statBg} rounded-full`}>
+                    <span className={`text-2xl font-bold ${benefit.statColor}`}>{benefit.stat}</span>
+                    <span className={`text-sm font-medium ${benefit.statLabelColor}`}>{benefit.statLabel}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Signals Section */}
+      <section className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Join hundreds of satisfied appraisers who trust ieIMPACT with their data entry needs
+            </p>
+          </motion.div>
+
+          {/* Stats Grid */}
+          <div className="grid md:grid-cols-4 gap-8 mb-16">
+            {[
+              { number: "10+", label: "Years Experience", icon: Award },
+              { number: "50,000+", label: "Reports Processed", icon: FileText },
+              { number: "500+", label: "Happy Clients", icon: Users },
+              { number: "99.9%", label: "Client Satisfaction", icon: Star }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="w-8 h-8 text-primary-600" />
+                </div>
+                <div className="text-3xl lg:text-4xl font-bold text-primary-900 mb-2">{stat.number}</div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Testimonial */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-primary-50 to-success-50 rounded-2xl p-8 lg:p-12 relative overflow-hidden"
+          >
+            <div className="relative z-10 text-center">
+              <div className="flex justify-center mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-warning-500 fill-current" />
+                ))}
+              </div>
+              <blockquote className="text-xl lg:text-2xl text-gray-800 font-medium mb-6 italic">
+                "Thank you for all the great service, I appreciate the hard work and detailed files you assist my company with daily. Keep up the great work."
+              </blockquote>
+              <div className="text-primary-700 font-semibold">
+                - Verified ieIMPACT Client
+              </div>
+            </div>
+            
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-200/20 rounded-full -translate-y-16 translate-x-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-success-200/20 rounded-full translate-y-12 -translate-x-12"></div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 lg:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Simple, streamlined process to get your data entry completed quickly
+            </p>
+          </motion.div>
+
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-300 to-success-300 rounded-full hidden lg:block"></div>
+
+            <div className="space-y-12 lg:space-y-24">
+              {[
+                {
+                  step: "01",
+                  title: "Submit Your Data Requirements",
+                  description: "Upload your inspection sheets, property details, or any data that needs to be entered. Our secure portal accepts all file formats.",
+                  icon: FileText,
+                  side: "left"
+                },
+                {
+                  step: "02", 
+                  title: "Our Experts Process Your Information",
+                  description: "Trained professionals with appraisal expertise carefully enter your data with rigorous quality control at every step.",
+                  icon: Users,
+                  side: "right"
+                },
+                {
+                  step: "03",
+                  title: "Receive Accurate, Formatted Reports",
+                  description: "Get your completed reports back in your preferred format, ready for client delivery. Fast, accurate, and professional.",
+                  icon: CheckCircle,
+                  side: "left"
+                }
+              ].map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: step.side === 'left' ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`flex items-center gap-8 ${step.side === 'right' ? 'lg:flex-row-reverse' : ''}`}
+                >
+                  {/* Content */}
+                  <div className="flex-1 lg:max-w-md">
+                    <div className={`bg-white rounded-xl p-8 shadow-lg border border-gray-100 ${step.side === 'right' ? 'lg:text-right' : ''}`}>
+                      <div className={`flex items-center gap-4 mb-4 ${step.side === 'right' ? 'lg:justify-end' : ''}`}>
+                        <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                          <step.icon className="w-6 h-6 text-primary-600" />
+                        </div>
+                        <span className="text-3xl font-bold text-primary-600">{step.step}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-primary-900 mb-3">{step.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+
+                  {/* Timeline Node (Desktop) */}
+                  <div className="hidden lg:block relative">
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
+                      className="w-6 h-6 bg-primary-600 rounded-full border-4 border-white shadow-lg"
+                    ></motion.div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="flex-1 lg:max-w-md hidden lg:block"></div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact/CTA Section */}
+      <section id="contact" className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 mb-4">
+              Transform Your Appraisal Business Today
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Ready to boost productivity and reduce costs? Get started with ieIMPACT's professional data entry services.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-primary-50 to-white rounded-2xl p-8 shadow-lg border border-primary-100"
+            >
+              <h3 className="text-2xl font-bold text-primary-900 mb-6">Get Your Free Quote</h3>
+              
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* Name Field */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Name *
+                    </label>
+                    <input
+                      {...register("name")}
+                      type="text"
+                      className={`w-full px-4 py-3 border rounded-lg transition-all duration-300 ${
+                        errors.name 
+                          ? "border-red-500 focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                          : "border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      }`}
+                      placeholder="Your full name"
+                    />
+                    <AnimatePresence>
+                      {errors.name && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          {errors.name.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Email Field */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email *
+                    </label>
+                    <input
+                      {...register("email")}
+                      type="email"
+                      className={`w-full px-4 py-3 border rounded-lg transition-all duration-300 ${
+                        errors.email 
+                          ? "border-red-500 focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                          : "border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      }`}
+                      placeholder="your@email.com"
+                    />
+                    <AnimatePresence>
+                      {errors.email && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          {errors.email.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* Phone Field */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone
+                    </label>
+                    <input
+                      {...register("phone")}
+                      type="tel"
+                      className={`w-full px-4 py-3 border rounded-lg transition-all duration-300 ${
+                        errors.phone 
+                          ? "border-red-500 focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                          : "border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      }`}
+                      placeholder="(555) 123-4567"
+                    />
+                    <AnimatePresence>
+                      {errors.phone && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          {errors.phone.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Company Field */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Company *
+                    </label>
+                    <input
+                      {...register("company")}
+                      type="text"
+                      className={`w-full px-4 py-3 border rounded-lg transition-all duration-300 ${
+                        errors.company 
+                          ? "border-red-500 focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                          : "border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      }`}
+                      placeholder="Your company name"
+                    />
+                    <AnimatePresence>
+                      {errors.company && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          {errors.company.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                {/* Message Field */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    {...register("message")}
+                    rows={4}
+                    className={`w-full px-4 py-3 border rounded-lg transition-all duration-300 resize-none ${
+                      errors.message 
+                        ? "border-red-500 focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                        : "border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    }`}
+                    placeholder="Tell us about your data entry needs..."
+                  />
+                  <div className="flex justify-between items-center mt-1">
+                    <AnimatePresence>
+                      {errors.message && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-500 text-sm flex items-center gap-1"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          {errors.message.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                    <span className="text-sm text-gray-500">
+                      {watch("message")?.length || 0}/1000
+                    </span>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting || !isValid}
+                  whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                  className={`w-full px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg ${
+                    isSubmitting || !isValid
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-primary-600 hover:bg-primary-700 hover:shadow-xl text-white"
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending Message...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="w-5 h-5" />
+                    </>
+                  )}
+                </motion.button>
+
+                {/* Form Status Indicator */}
+                <div className="text-center">
+                  <p className="text-sm text-gray-500">
+                    We'll respond within 24 hours • 100% confidential
+                  </p>
+                </div>
+              </form>
+            </motion.div>
+
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl font-bold text-primary-900 mb-6">Get In Touch</h3>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                  Ready to streamline your appraisal workflow? Contact us today for a free consultation and discover how ieIMPACT can transform your business.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-100"
+                >
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-primary-900">Phone</div>
+                    <div className="text-gray-600">(555) 123-4567</div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-100"
+                >
+                  <div className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-success-600" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-primary-900">Email</div>
+                    <div className="text-gray-600">info@ieimpact.com</div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-100"
+                >
+                  <div className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-warning-600" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-primary-900">Hours</div>
+                    <div className="text-gray-600">24/7 Available</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Emergency CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-r from-success-600 to-success-700 rounded-xl p-6 text-white"
+              >
+                <h4 className="text-xl font-bold mb-2">Need Urgent Data Entry?</h4>
+                <p className="text-success-100 mb-4">Rush orders available with same-day turnaround</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-success-700 hover:text-success-800 px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2"
+                >
+                  Call Now: (555) 123-4567
+                  <Phone className="w-4 h-4" />
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-4">ieIMPACT</h3>
+              <p className="text-primary-200 mb-4 leading-relaxed">
+                Professional data entry services for real estate appraisers. 
+                Boost productivity, reduce costs, and deliver faster results with our 24/7 expert team.
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-success-500 rounded-full animate-pulse"></div>
+                <span className="text-primary-200">Available 24/7</span>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><a href="#services" className="text-primary-200 hover:text-white transition-colors">Services</a></li>
+                <li><a href="#benefits" className="text-primary-200 hover:text-white transition-colors">Benefits</a></li>
+                <li><a href="#how-it-works" className="text-primary-200 hover:text-white transition-colors">How It Works</a></li>
+                <li><a href="#contact" className="text-primary-200 hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-primary-400" />
+                  <span className="text-primary-200">(555) 123-4567</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-primary-400" />
+                  <span className="text-primary-200">info@ieimpact.com</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary-400" />
+                  <span className="text-primary-200">24/7 Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-primary-800 mt-8 pt-8 text-center">
+            <p className="text-primary-300">
+              © 2024 ieIMPACT. All rights reserved. | Professional Real Estate Appraisal Data Entry Services
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowSuccessModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="text-center">
+                {/* Success Animation */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", damping: 15, stiffness: 300 }}
+                  className="w-20 h-20 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-6"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.4, type: "spring", damping: 15, stiffness: 300 }}
+                  >
+                    <CheckCircle2 className="w-10 h-10 text-success-600" />
+                  </motion.div>
+                </motion.div>
+
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl font-bold text-primary-900 mb-4"
+                >
+                  Message Sent Successfully!
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-gray-600 mb-6 leading-relaxed"
+                >
+                  Thank you for your interest in ieIMPACT! We've received your message and will respond within 24 hours with a customized quote for your data entry needs.
+                </motion.p>
+
+                {/* Next Steps */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-primary-50 rounded-lg p-4 mb-6 text-left"
+                >
+                  <h4 className="font-semibold text-primary-900 mb-2">What happens next?</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Our team will review your requirements</li>
+                    <li>• We'll prepare a customized quote</li>
+                    <li>• You'll receive a detailed proposal within 24 hours</li>
+                    <li>• We can start processing your data immediately</li>
+                  </ul>
+                </motion.div>
+
+                <div className="flex gap-3">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowSuccessModal(false)}
+                    className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                  >
+                    Close
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setShowSuccessModal(false);
+                      window.location.href = "tel:5551234567";
+                    }}
+                    className="flex-1 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-4 h-4" />
+                    Call Now
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

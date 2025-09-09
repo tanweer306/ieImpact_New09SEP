@@ -1,0 +1,130 @@
+[
+  {
+    "question": "What is your turn around time?",
+    "answer": "Our data entry team works around the clock 24/7 and 365 days a year. When placing a new order, you can choose an ETA of 6, 12, or 24 hours. Rush orders are processed within 6 hours for an extra $1.99. New customers’ first three free orders may take up to 24 hours as we learn your style and regional data."
+  },
+  {
+    "question": "Do you perform UAD compliant appraisal data entry?",
+    "answer": "Yes we perform UAD-compliant data entry, e.g., UAD URAR 1004, Exterior Only SFR 2055, Condo 1073, Exterior Condo 1075, plus non-UAD forms like Multifamily 1025 and Manufactured homes upon request."
+  },
+  {
+    "question": "How much of an appraisal report do you fill in?",
+    "answer": "We fill in almost 95% of the manual data entry you’d do. We fill up to 9 comps per report. However, we don’t fill valuation adjustments or pictures unless you provide clear instructions."
+  },
+  {
+    "question": "Which form filler software do you support?",
+    "answer": "We support TOTAL (a la mode), ACI Report (ACI), ClickFORMS (Bradford), and Appraise-It (SFREP)."
+  },
+  {
+    "question": "Can I email you new data entry orders?",
+    "answer": "Yes just email your order instructions and attachments to [email protected], and the order is created automatically. You'll receive a confirmation email. You may also use the new order form."
+  },
+  {
+    "question": "What do I need to send you?",
+    "answer": "Send all data you’d need to complete the report yourself: subject data, comps, public records, MLS data, inspection details, rough sketch, contract details, 1004MC data, plus your software template file with your standard comments included."
+  },
+  {
+    "question": "How will I send you data?",
+    "answer": "Via our online order system you can upload files (PDFs, ZIPs) or provide an MLS link. You may also grant us MLS access or share public assessor website links for data extraction."
+  },
+  {
+    "question": "Do I need to send a template file for each order?",
+    "answer": "Yes please clone/rename your existing template file with all required forms and send it with each order."
+  },
+  {
+    "question": "What appraisal forms you can complete?",
+    "answer": "We handle SFR URAR 1004, Condominium 1073, Multi-family, Drive-By Exterior Only, and other forms at the same price. We also offer Desktop, BPOs, and Reviews at a lower price."
+  },
+  {
+    "question": "What sections of the report will you fill in for me?",
+    "answer": "We typically fill: Subject, Contract, Neighborhood, Site/Project Site, Improvements, Project Info, Comparable Sales Grid (max 9 comps), Prior Sales/Transfers, PUD Info, 1004MC forms, Plat map, Sketch, Location maps, plus any data/instructions you send."
+  },
+  {
+    "question": "How do I use your service?",
+    "answer": "Register (no credit card required) → account verification via call → fill out “Standard Instructions Tab” with style and sample reports → place order with template and data → receive completion notification and download (or email) of the final report."
+  },
+  {
+    "question": "Do you have your own access to the MLS websites, NDC or RealQuest?",
+    "answer": "No we’re not licensed brokers or appraisers. You can provide an extra MLS user assistant access, an MLS link, or PDFs for us to extract data. We'll return PDF files for your reference."
+  },
+  {
+    "question": "How do I pay you?",
+    "answer": "After trial credits expire, you are required to use a credit card on file or PayPal at order time. We authorize your card but charge only after order completion. Holds are removed if canceled. No credit card numbers are stored on our servers."
+  },
+  {
+    "question": "How will I receive my completed order?",
+    "answer": "You will get an email once the order is completed. You can log in to download the report or opt to receive reports by email by enabling the option in your profile."
+  },
+  {
+    "question": "Does this comply with USPAP?",
+    "answer": "Yes we follow USPAP guidelines. We don’t calculate valuation numbers. We keep your data confidential, secure, and never share it. We hold TRUSTe, Norton/Symantec SSL protection, BBB membership, and E&O insurance. You're welcome to credit ieIMPACT as your assistant."
+  },
+  {
+    "question": "Do you take Holidays?",
+    "answer": "No we operate 24/7, 365 days a year, with no sick time, aiming to deliver on time without errors."
+  },
+  {
+    "question": "Do you have any other website?",
+    "answer": "No ieIMPACT is our sole brand and website. Beware of imitation sites."
+  },
+  {
+    "question": "Can I send you data by Fax?",
+    "answer": "No it’s slow and error-prone. Please scan using a multi-page feeder or upload PDF, JPG, XLS, or TXT files instead. Avoid using a mobile camera."
+  },
+  {
+    "question": "How can I become one of your off site data entry persons?",
+    "answer": "Send your resume to [email protected]. We'll contact you when positions open."
+  },
+  {
+    "question": "I signed up, but I didn't get my password. How do I get my password?",
+    "answer": "Your password is emailed upon activation (within 24 hours). Check spam. If not received after 1 hour, call us. For existing users, use the “Forgot Password” link."
+  },
+  {
+    "question": "How do I contact the data entry person working on my reports?",
+    "answer": "Log into your account, open the order, and send a message there. Customer service emails and calls are answered during US business hours."
+  },
+  {
+    "question": "Which sketching software do you use?",
+    "answer": "We use ACI Sketch, Area Sketch, TOTAL Sketch, and Apex V5.0. Please specify your software and version in the Standard Instructions Tab."
+  },
+  {
+    "question": "I use both ACI and Alamode software. Can I use both?",
+    "answer": "Yes just send the corrected cloned template including all forms and specify desired file format under Order Instructions."
+  },
+  {
+    "question": "Is there any catch?",
+    "answer": "No not at all. No credit card or setup fee, no contracts. We rely on delivering a service you'll love and refer to others."
+  },
+  {
+    "question": "Your website is not working properly, what should I do?",
+    "answer": "Try a different browser or ensure you have the latest Adobe Flash Player. If issues persist, email files and instructions to [email protected] and we’ll complete your orders."
+  },
+  {
+    "question": "Do you share my data or use my data for anything else?",
+    "answer": "Absolutely not. Your data is never shared or used for any purpose other than completing your report."
+  },
+  {
+    "question": "Do you have a sample of Field Inspection Sheet that I can use?",
+    "answer": "Yes downloadable in MS Word format so you can customize it. We recommend including an abbreviation key in the comments section."
+  },
+  {
+    "question": "What instructions should I provide you?",
+    "answer": "Refer to sample instructions: Style Report Information; Standard Instructions Information And Example; Example Instructions And Reports; Data Entry Report Information And Example."
+  },
+  {
+    "question": "How can I protect myself from internet fraud?",
+    "answer": "Follow these tips: don't open suspicious emails; use unique passwords; verify TRUSTe/BBB; ensure SSL (https) and Norton/McAfee protection; avoid public hosting, wire transfers, and suspicious PayPal addresses; never send license codes via email."
+  },
+  {
+    "question": "I use DataMaster or another automated form program to fill the comps. Can you give me some discount?",
+    "answer": "We do much more we consolidate MLS and public records, create complex sketches at no extra cost, interpret contracts, add concessions, boundaries, maps, distances, etc. Send a few reports first and contact customer service for estimates."
+  },
+  {
+    "question": "How can I check my internet speed?",
+    "answer": "Visit our speed test at http://ieimpact.com/speedtest.php."
+  },
+  {
+    "question": "I believe I need to add a comment in my reports that it is typed by ieIMPACT, and that I still reviewed, adjusted, etc, as is required per regulations",
+    "answer": "Here are two sample comments for your addendum or additional comments sections, clarifying the division of work between the appraiser and ieIMPACT."
+  }
+]
